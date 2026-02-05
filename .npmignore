@@ -1,0 +1,39 @@
+# Tests
+tests/
+coverage/
+*.test.ts
+*.spec.ts
+
+# Build configs
+rollup.config.js
+tsconfig*.json
+.eslintrc.js
+jest.config.js
+
+# Source (only dist needed)
+src/
+
+# Extension source (built files included)
+extension/*.ts
+extension/*.tsx
+
+# Scripts
+scripts/
+
+# Development
+.github/
+CONTRIBUTING.md
+.vscode/
+.idea/
+
+# Git
+.git/
+.gitignore
+
+# CI
+.travis.yml
+.github/workflows/
+
+# Misc
+*.log
+.cache/

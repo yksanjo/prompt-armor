@@ -1,0 +1,21 @@
+{
+  "name": "prompt-armor-extension",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "npm run build:popup && npm run build:content && npm run build:background",
+    "build:popup": "esbuild popup.tsx --bundle --outfile=popup.js --format=iife --loader:.tsx=tsx",
+    "build:content": "esbuild content.ts --bundle --outfile=content.js --format=iife",
+    "build:background": "esbuild background.ts --bundle --outfile=background.js --format=esm",
+    "watch": "npm run build -- --watch"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.268",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "esbuild": "^0.20.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.3.3"
+  }
+}

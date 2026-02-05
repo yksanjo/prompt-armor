@@ -1,0 +1,59 @@
+{
+  "model_name": "prompt-armor-classifier-v1",
+  "version": "1.0.0",
+  "description": "Lightweight ONNX model for prompt injection and jailbreak detection",
+  "input": {
+    "type": "text",
+    "max_length": 512,
+    "tokenizer": "wordpiece"
+  },
+  "output": {
+    "type": "classification",
+    "classes": [
+      {
+        "id": 0,
+        "name": "benign",
+        "description": "Normal, safe prompt"
+      },
+      {
+        "id": 1,
+        "name": "injection",
+        "description": "Prompt injection attempt"
+      },
+      {
+        "id": 2,
+        "name": "jailbreak",
+        "description": "Jailbreak attempt"
+      },
+      {
+        "id": 3,
+        "name": "exfiltration",
+        "description": "Data exfiltration attempt"
+      },
+      {
+        "id": 4,
+        "name": "leak",
+        "description": "System prompt leak attempt"
+      }
+    ]
+  },
+  "performance": {
+    "latency_p50_ms": 15,
+    "latency_p95_ms": 35,
+    "latency_p99_ms": 50,
+    "model_size_mb": 25,
+    "parameters": "distilled-bert-base"
+  },
+  "accuracy": {
+    "f1_score": 0.94,
+    "precision": 0.92,
+    "recall": 0.96,
+    "false_positive_rate": 0.03
+  },
+  "training": {
+    "dataset": "prompt-injection-benchmark-v2",
+    "samples": 150000,
+    "epochs": 5,
+    "base_model": "distilbert-base-uncased"
+  }
+}

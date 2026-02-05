@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM"],
+    "module": "ESNext",
+    "outDir": "./dist/browser",
+    "rootDir": "./src"
+  },
+  "include": ["src/core/**/*", "src/adapters/**/*", "src/browser/**/*", "src/patterns/**/*"],
+  "exclude": ["src/**/*.test.ts"]
+}

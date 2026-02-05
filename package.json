@@ -1,0 +1,117 @@
+{
+  "name": "prompt-armor",
+  "version": "1.0.0",
+  "description": "Runtime firewall for prompt injection attacks - protect your LLM applications",
+  "main": "./dist/node/index.js",
+  "module": "./dist/node/index.mjs",
+  "types": "./dist/node/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/node/index.d.ts",
+        "default": "./dist/node/index.mjs"
+      },
+      "require": {
+        "types": "./dist/node/index.d.ts",
+        "default": "./dist/node/index.js"
+      }
+    },
+    "./browser": {
+      "import": {
+        "types": "./dist/browser/index.d.ts",
+        "default": "./dist/browser/index.mjs"
+      }
+    },
+    "./adapters/openai": {
+      "import": "./dist/node/adapters/openai.mjs",
+      "require": "./dist/node/adapters/openai.js"
+    },
+    "./adapters/anthropic": {
+      "import": "./dist/node/adapters/anthropic.mjs",
+      "require": "./dist/node/adapters/anthropic.js"
+    },
+    "./adapters/langchain": {
+      "import": "./dist/node/adapters/langchain.mjs",
+      "require": "./dist/node/adapters/langchain.js"
+    }
+  },
+  "files": [
+    "dist",
+    "models",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "npm run build:node && npm run build:browser",
+    "build:node": "tsc -p tsconfig.node.json && rollup -c rollup.node.config.js",
+    "build:browser": "tsc -p tsconfig.browser.json && rollup -c rollup.browser.config.js",
+    "build:extension": "cd extension && npm run build",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint src --ext .ts",
+    "download-model": "node scripts/download-model.js",
+    "prepublishOnly": "npm run build && npm test"
+  },
+  "keywords": [
+    "prompt-injection",
+    "llm-security",
+    "ai-safety",
+    "prompt-engineering",
+    "onnx",
+    "firewall",
+    "jailbreak-detection",
+    "openai",
+    "anthropic",
+    "langchain"
+  ],
+  "author": "Prompt Armor Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/chrome": "^0.0.268",
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.11.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "eslint": "^8.56.0",
+    "jest": "^29.7.0",
+    "rollup": "^4.9.6",
+    "rollup-plugin-dts": "^6.1.0",
+    "ts-jest": "^29.1.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "onnxruntime-node": "^1.17.0",
+    "onnxruntime-web": "^1.17.0"
+  },
+  "peerDependencies": {
+    "openai": ">=4.0.0",
+    "@anthropic-ai/sdk": ">=0.17.0",
+    "langchain": ">=0.1.0"
+  },
+  "peerDependenciesMeta": {
+    "openai": {
+      "optional": true
+    },
+    "@anthropic-ai/sdk": {
+      "optional": true
+    },
+    "langchain": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prompt-armor/prompt-armor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/prompt-armor/prompt-armor/issues"
+  },
+  "homepage": "https://prompt-armor.dev"
+}
